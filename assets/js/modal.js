@@ -13,6 +13,7 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
 const form = document.querySelector('form');
+const btnClose =document.querySelector(".btn-close");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -22,13 +23,16 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// close modal event, click x button
-closeBtn.addEventListener("click", closeModal);
-
 // close modal form
 function closeModal() {
   modalbg.style.display = "none";
 }
+
+// close modal event, click x button
+closeBtn.addEventListener("click", closeModal);
+
+// close modal event, click on Fermer button
+btnClose.addEventListener("click", closeModal);
 
 // close modal event, click outside modal
 modalbg.addEventListener('click', function (event) {
@@ -48,8 +52,11 @@ function validate() {
   var termsValid = termsAccepted();
 
   if (firstnameValid && lastnameValid && emailValid && competitionValid && locationValid && termsValid) {
-    successMessage.style.display = "block";
+    successMessage.style.display = "flex";
+    btnClose.style.display = "block";
   }
+   
+
 }
 
 function validateFirstname() {
