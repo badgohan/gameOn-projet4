@@ -50,9 +50,10 @@ function validate() {
   var competitionValid = validateCompetition();
   var locationValid = validateLocation();
   var termsValid = termsAccepted();
+  var birthdateValid = validateBirthdate();
 
   //if all test return true we display the success message
-  if (firstnameValid && lastnameValid && emailValid && competitionValid && locationValid && termsValid) {
+  if (firstnameValid && lastnameValid && emailValid && competitionValid && locationValid && termsValid && birthdateValid) {
     successMessage.style.display = "flex";
     btnClose.style.display = "block";
   }
@@ -141,4 +142,16 @@ function termsAccepted() {
     termsCondition.closest(".formData").setAttribute("data-error-visible", "false"); 
     return true;
   }
+}
+
+//Check if a birthdate is written
+function validateBirthdate() {
+  if (birthdate.value.length === 0) {
+    console.log("test");
+    birthdate.closest(".formData").setAttribute("data-error", "La date de naissance ne peut pas être vide");
+    birthdate.closest(".formData").setAttribute("data-error-visible", "true");
+    return false;
+  } else
+  birthdate.closest(".formData").setAttribute("data-error-visible", "false");
+  return true;
 }
