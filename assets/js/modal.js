@@ -51,6 +51,7 @@ function validate() {
   var locationValid = validateLocation();
   var termsValid = termsAccepted();
 
+  //if all test return true we display the success message
   if (firstnameValid && lastnameValid && emailValid && competitionValid && locationValid && termsValid) {
     successMessage.style.display = "flex";
     btnClose.style.display = "block";
@@ -58,7 +59,7 @@ function validate() {
    
 
 }
-
+// Check if "prénom" field is not empty and have at least two characters
 function validateFirstname() {
   if (firstname.value.length < 2 || firstname.value.length === 0) {
     firstname.closest(".formData").setAttribute("data-error", firstname.value.length === 0 ? "Le champ prénom ne peut pas être vide" : "Le prénom doit contenir au moins deux caractères");
@@ -70,7 +71,7 @@ function validateFirstname() {
   }
 }
 
-
+// Check if "nom" field is not empty and have at least two characters
 function validateLastname() {
   if (lastname.value.length < 2 || lastname.value.length === 0) {
     lastname.closest(".formData").setAttribute("data-error", lastname.value.length === 0 ? "Le champ nom ne peut pas être vide" : "Le nom doit contenir au moins deux caractères");
@@ -81,7 +82,7 @@ function validateLastname() {
     return true; 
   }
 }
-
+// Check if "email" field is not empty and match a valid email format
 function validateEmail() {
   var regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -95,8 +96,8 @@ function validateEmail() {
   }
 }
 
+//Check if the field "tournoi" contain a number and is not empty
 function validateCompetition() {
-
   competition = parseInt(quantity.value);
   if (Number.isInteger(competition) == false && quantity.value != '' && 0 <= quantity.value < 100) {
     quantity.closest(".formData").setAttribute("data-error", "La valeur entrée doit être un chiffre compris entre 0 et 100");
@@ -108,9 +109,8 @@ function validateCompetition() {
   }
 }
 
-
+//Check if at least one location is checked
 function validateLocation() {
-
   const locationName = document.getElementsByName("location");
   var coché = false;
 
@@ -131,6 +131,7 @@ function validateLocation() {
   }
 }
 
+//Check is the terms and conditions are accepted
 function termsAccepted() {
   if (termsCondition.checked == false) {
     termsCondition.closest(".formData").setAttribute("data-error", "Il est obligatoire d'accepter les conditions d'utilisation");  
